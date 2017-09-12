@@ -25,7 +25,7 @@ port.on('error', function(err) {
 
 // Switches the port into "flowing mode"
 port.on('data', function (data) {
-  console.log('Data:', data);
+  console.log('Data:', Buffer.from(data, 'base64').toString());
 });
 
 app.post('/gcode', bodyRequired, function(req, res) {
