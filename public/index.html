@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>SaladBot Controller</title>
+	</head>
+	<body>
+		<h1>SaladBot Controller</h1>
+		<section>
+			<h2>GCODE sender</h2>
+			<input type="text" size="100" id="gcode-command-input"/>
+			<button type="button" id="gcode-send-button">Send</button>
+		</section>
+		<script>
+			(function() {
+				// Register click handler
+				document.getElementById('gcode-send-button').addEventListener('click', function(e) {
+					e.preventDefault();
+					const input = document.getElementById('gcode-command-input')
+					const inputValue = input.value;
+
+					 // Fetch value from gcode command input
+					fetch('gcode', { method: 'POST', body: JSON.stringify({'command': inputValue}), headers: new Headers({'Content-Type': 'application/json'}) })
+					.then(function(res) {
+						if(!res.ok) {
+							console.log(res);
+						}
+						else {
+							// Clear out the text area
+							input.value = "";
+						}
+					}); 
+				});
+			})();
+		</script>
+	</body>
+</html>	
