@@ -23,6 +23,11 @@ port.on('error', function(err) {
   console.log('Error: ', err.message);
 })
 
+// Switches the port into "flowing mode"
+port.on('data', function (data) {
+  console.log('Data:', data);
+});
+
 app.post('/gcode', bodyRequired, function(req, res) {
 	port.write(req.body.command, function(err) {
 	  if (err) {
@@ -40,5 +45,5 @@ app.post('/gcode', bodyRequired, function(req, res) {
 app.use(express.static('public'));
 
 app.listen(PORT, function() {
-	console.log(`Example app listening on port ${ PORT }`)
+	console.log(`App listening on port: ${ PORT }`)
 });
