@@ -29,7 +29,7 @@ port.on('data', function (data) {
 });
 
 app.post('/gcode', bodyRequired, function(req, res) {
-	port.write(req.body.command, function(err) {
+	port.write(req.body.command + "\n", function(err) { // Force a newline
 	  if (err) {
 	    console.log("Error on write: ", err.message);
 	    res.status(400);
