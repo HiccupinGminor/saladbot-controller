@@ -1,5 +1,5 @@
 from picamera import PiCamera
-camera = PiCamera()
+from detector import filter_green
 
 DIST_FROM_LENSE_TO_GROUND = 39.5
 SIZE_OF_TARGET_ZONE = 10
@@ -22,9 +22,11 @@ sensor_height = pixel_width * resolution_y
 def frame_image(sensor_width, sensor_height, dist_to_target, size_of_target):
     # what percentage of the image does the target occupy?
     (u, v) = ( focal_length * size_of_target / dist_to_target ) / sensor_width , ( focal_length * size_of_target / dist_to_target ) / sensor_height
-    print(u, v)
     return ((1 - u) / 2, (1 - v) / 2, u, v)
 
-camera.resolution(resolution_x, resolution_y)
-camera.zoom = frame_image(sensor_width, sensor_height, DIST_FROM_LENSE_TO_GROUND, SIZE_OF_TARGET_ZONE)
-camera.capture('../foo.jpg')
+with picamera.PiCamera() as camera:
+    camera.resolution(resolution_x, resolution_y)
+    camera.zoom = frame_image(sensor_width, sensor_height, DIST_FROM_LENSE_TO_GROUND, SIZE_OF_TARGET_ZONE)
+    image = np.empty((resolution_y * resolution_x * 3,), dtype=np.uint8)
+    camera.capture(image, 'bgr')
+    filter_green(image)
