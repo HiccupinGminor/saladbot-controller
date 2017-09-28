@@ -27,9 +27,3 @@ def filter_green(img):
     if (cv2.countNonZero(v) / v.size) > 0.001:
         return True
     return False
-
-
-filter_green(read_image("seedling.jpg"))
-filter_green(read_image("dirt.jpg"))
-filter_green(read_image("zoomed-image.jpg"))
-filter_green(read_image("cilantro.JPG"))

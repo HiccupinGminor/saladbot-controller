@@ -1,5 +1,7 @@
 from picamera import PiCamera
 from detector import filter_green
+import numpy as np
+import time
 
 DIST_FROM_LENSE_TO_GROUND = 39.5
 SIZE_OF_TARGET_ZONE = 10
@@ -24,9 +26,11 @@ def frame_image(sensor_width, sensor_height, dist_to_target, size_of_target):
     (u, v) = ( focal_length * size_of_target / dist_to_target ) / sensor_width , ( focal_length * size_of_target / dist_to_target ) / sensor_height
     return ((1 - u) / 2, (1 - v) / 2, u, v)
 
-with picamera.PiCamera() as camera:
-    camera.resolution(resolution_x, resolution_y)
-    camera.zoom = frame_image(sensor_width, sensor_height, DIST_FROM_LENSE_TO_GROUND, SIZE_OF_TARGET_ZONE)
-    image = np.empty((resolution_y * resolution_x * 3,), dtype=np.uint8)
-    camera.capture(image, 'bgr')
-    filter_green(image)
+def square_has_plant():
+    with picamera.PiCamera() as camera:
+        camera.resolution(resolution_x, resolution_y)
+        camera.zoom = frame_image(sensor_width, sensor_height, DIST_FROM_LENSE_TO_GROUND, SIZE_OF_TARGET_ZONE)
+        time.sleep(2)
+        image = np.empty((resolution_y * resolution_x * 3,), dtype=np.uint8)
+        camera.capture(image, 'bgr')
+        return filter_green(image)
