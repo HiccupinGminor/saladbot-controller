@@ -24,6 +24,6 @@ def filter_green(img):
     # Is there a plant in image?
     h,s,v = cv2.split(smoothed)
     ret, v = cv2.threshold(v,100,255,cv2.THRESH_BINARY) # Filter out really faint (smoothed) images
-    if (cv2.countNonZero(v) / v.size) > 0.001:
+    if (cv2.countNonZero(v) / v.size) > 0.001: # TODO more scientific threshold
         return True
     return False
