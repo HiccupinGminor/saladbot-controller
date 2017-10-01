@@ -1,5 +1,5 @@
-# from gcode import sendGcode
-# from camera.camera import square_has_plant
+from gcode import sendGcode
+from camera.camera import square_has_plant
 
 def go_home():
     sendGcode('G00 X0 Y0;')
