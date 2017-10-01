@@ -6,7 +6,7 @@ def go_home():
 
 def go_to(cell):
     # Send Gcode and wait for response
-    sendGcode('G00 X' + cell[1] + ' Y' + cell[2] + ';')
+    sendGcode('G00 X' + str(cell[1]) + ' Y' + str(cell[2]) + ';')
 
 def patrol(grid):
     go_home()
