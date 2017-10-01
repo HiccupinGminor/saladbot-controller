@@ -1,4 +1,3 @@
-import numpy as np
 import sqlite3
 
 conn = sqlite3.connect('saladbot.db')
@@ -30,28 +29,37 @@ class Grid():
             c.executemany("INSERT INTO cells (x, y, occupied, planted, watered) VALUES (?,?,?,?,?)", cells)
             conn.commit()
 
-        self.grid.current_cell = self.grid[0]
+        self.current_cell = self.grid[0]
 
     def get_grid(self):
         return self.grid
 
+    def set_current_cell(self, cell):
+        if cell:
+            self.current_cell = cell
+        else:
+            self.current_cell = self.find_cell(0,0) # Default to home cell
+
+    def get_current_cell(self):
+        return self.current_cell
+
     def next_cell(self):
-        current_cell = self.grid.current_cell
-        is_advancing_row = ( current_cell.y / 10 ) % 2 == 0
+        current_cell = self.current_cell
+        is_advancing_row = ( current_cell[2] / 10 ) % 2 == 0
 
         if is_advancing_row:
-            if current_cell.x == MAX_X:
-                return self.find_cell(x = current_cell.x, y = current_cell.y + 1) # Move to next y row
+            if current_cell[1] == MAX_X:
+                return self.find_cell(x = current_cell[1], y = current_cell[2] + CELL_SIZE) # Move to next y row
             else:
-                return self.find_cell(x = current_cell.x + 1, y = current_cell.y)
+                return self.find_cell(x = current_cell[1] + CELL_SIZE, y = current_cell[2])
         else:
-            if current_cell.x == 0:
-                return self.find_cell(x = current_cell.x, y = current_cell.y + 1)
+            if current_cell[1] == 0:
+                return self.find_cell(x = current_cell[1], y = current_cell[2] + CELL_SIZE)
             else:
-                return self.find_cell(x = current_cell.x - 1, y = current_cell.y)
+                return self.find_cell(x = current_cell[1] - CELL_SIZE, y = current_cell[2])
 
     def find_cell(self,x,y):
         for cell in self.grid:
-            if cell.x == x and cell.y == y
+            if cell[1] == x and cell[2] == y:
                 return cell
         return False

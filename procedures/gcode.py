@@ -1,5 +1,5 @@
 import serial
-ser = serial.Serial('/dev/ttyUSB0')
+ser = serial.Serial('/dev/ttyUSB0', baudrate=57600)
 
 def sendGcode(command):
-    ser.write(command + "\n")
+    return ser.write(command + "\n")
