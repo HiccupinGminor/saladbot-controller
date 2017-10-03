@@ -6,6 +6,6 @@ sio = io.TextIOWrapper(io.BufferedRWPair(ser, ser))
 def sendGcode(command):
     sio.write(str(command + "\n"))
     sio.flush()
-    line = sio.readline()
-    print(line)
-    return line
+    output = sio.readline()
+    print(output)
+    return output
