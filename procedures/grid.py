@@ -20,8 +20,8 @@ class Grid():
 
             cells = []
             # Based on boundaries, populate table with cells
-            for i in range(0, MAX_Y, CELL_SIZE):
-                for j in range(0, MAX_X, CELL_SIZE):
+            for i in range(0, MAX_Y + CELL_SIZE, CELL_SIZE): # Must be inclusive
+                for j in range(0, MAX_X + CELL_SIZE, CELL_SIZE):
                     cell = (j, i, False, None, None)
                     cells.append(cell)
                     self.grid.append(cell)
