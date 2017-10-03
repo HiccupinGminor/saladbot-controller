@@ -49,7 +49,8 @@ class Grid():
 
         if is_advancing_row:
             if current_cell[1] == MAX_X:
-                return self.find_cell(x = current_cell[1], y = current_cell[2] + CELL_SIZE) # Move to next y row
+                print("AT MAX X", current_cell[1], current_cell[2] + CELL_SIZE)
+                return self.find_cell(x = current_cell[1], y = (current_cell[2] + CELL_SIZE)) # Move to next y row
             else:
                 return self.find_cell(x = current_cell[1] + CELL_SIZE, y = current_cell[2])
         else:
