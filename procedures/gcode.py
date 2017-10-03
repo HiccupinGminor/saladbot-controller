@@ -10,6 +10,7 @@ def sendGcode(command):
         output = sio.readline()
         if output == "READY":
             break
-        else continue
+        else:
+            continue
     print(output)
     return output
