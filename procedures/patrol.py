@@ -1,4 +1,5 @@
 from gcode import sendGcode
+import time
 # from camera.camera import square_has_plant
 
 def go_home():
@@ -10,6 +11,8 @@ def go_to(cell):
 
 def patrol(grid):
     go_home()
+    time.sleep(5)
+    
     while grid.next_cell(): # Will return false if nothing left to go to
         print(grid.next_cell())
         grid.set_current_cell(grid.next_cell())

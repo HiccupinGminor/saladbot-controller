@@ -45,7 +45,7 @@ class Grid():
 
     def next_cell(self):
         current_cell = self.current_cell
-        is_advancing_row = ( current_cell[2] / 10 ) % 2 == 0
+        is_advancing_row = ( current_cell[2] / 10 ) % 2 == 
 
         if is_advancing_row:
             if current_cell[1] == MAX_X:
