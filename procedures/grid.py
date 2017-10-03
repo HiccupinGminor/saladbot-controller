@@ -5,9 +5,7 @@ c = conn.cursor()
 
 CELL_SIZE = 10
 MAX_X = 330
-MIN_X = 50
 MAX_Y = 870
-MIN_Y = 50
 
 class Grid():
     def __init__(self):
