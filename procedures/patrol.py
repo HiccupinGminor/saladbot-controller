@@ -15,4 +15,3 @@ def patrol(grid):
     while grid.next_cell(): # Will return false if nothing left to go to
         grid.set_current_cell(grid.next_cell())
         go_to(grid.get_current_cell())
-        time.sleep(3) # artificial delay for sanity
