@@ -8,7 +8,7 @@ def sendGcode(command):
     sio.flush()
     while True:
         output = sio.readline()
-        if output == "READY":
+        if output.strip() == "READY":
             break
         else:
             continue
