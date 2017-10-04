@@ -11,7 +11,7 @@ def go_to(cell):
 
 def patrol(grid):
     go_home()
-    print(grid.next_cell())
     while grid.next_cell(): # Will return false if nothing left to go to
         grid.set_current_cell(grid.next_cell())
+        print(grid.get_current_cell())
         go_to(grid.get_current_cell())

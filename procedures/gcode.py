@@ -1,16 +1,17 @@
 import serial
 import io
 ser = serial.Serial('/dev/ttyACM0', baudrate=57600, timeout=2)
-sio = io.TextIOWrapper(io.BufferedRWPair(ser, ser))
 
 def sendGcode(command):
-    sio.write(str(command + "\n"))
-    sio.flush()
+    ser.write(bytes(command + "\n", "utf-8"))
     while True:
-        output = sio.readline()
+        output = str(ser.readline(), "utf-8")
+        print(output)
         if output.strip() == "READY":
+            ser.reset_input_buffer()
             break
         else:
+            print("WAITING")
             continue
     print(output)
     return output
