@@ -1,5 +1,5 @@
 from gcode import sendGcode
-import time
+from datetime import datetime
 from camera.camera import square_has_plant
 
 retry_seeding_interval = 7 #days
@@ -22,7 +22,7 @@ def drop_seed():
 
 def process_cell(cell):
     plant_exists = square_has_plant()
-    now = time.now()
+    now = datetime.datetime.now()
     has_been_planted = (now - cell.planted) >= retry_seeding_interval
     has_been_watered = (now - cell.watered) >= watering_frequency
     print(has_been_planted, has_been_watered, now)
