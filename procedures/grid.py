@@ -53,7 +53,7 @@ class Grid():
                     cells.append(cell)
                     self.grid.append(Cell(id=id, x=cell[0], y=cell[1], occupied=cell[2], planted=cell[3], watered=cell[4]))
 
-            c.executemany("INSERT INTO cells (id, x, y, occupied, planted, watered) VALUES (?,?,?,?,?)", cells)
+            c.executemany("INSERT INTO cells (id, x, y, occupied, planted, watered) VALUES (?,?,?,?,?,?)", cells)
             conn.commit()
 
         self.current_cell = self.grid[0]
