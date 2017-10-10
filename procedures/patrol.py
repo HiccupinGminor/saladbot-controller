@@ -2,6 +2,10 @@ from gcode import sendGcode
 import time
 from camera.camera import square_has_plant
 
+retry_seeding_interval = 7 #days
+watering_frequency = 2 #2x per day
+
+
 def go_home():
     sendGcode('G00 X0 Y0;\n')
 
@@ -17,7 +21,15 @@ def drop_seed():
     sendGcode('S00 D0 F100;\n')
 
 def process_cell(cell):
-    print("PLANT EXISTS:", square_has_plant())
+    plant_exists = square_has_plant()
+    now = time.now()
+    has_been_planted = (now - cell.planted) >= retry_seeding_interval
+    has_been_watered = (now - cell.watered) >= watering_frequency
+    print(has_been_planted, has_been_watered, now)
+    if not plant_exists and not has_been_planted:
+        drop_seed()
+    if not has_been_watered:
+        water(5)
 
 
 def patrol(grid):
