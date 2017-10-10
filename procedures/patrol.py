@@ -9,8 +9,16 @@ def go_to(cell):
     # Send Gcode and wait for response
     sendGcode('G00 X' + str(cell.x) + ' Y' + str(cell.y) + ';\n')
 
+def water(seconds):
+    sendGcode('P00 S' + str(seconds) + ';\n')
+
+def drop_seed():
+    sendGcode('S00 D180 F30;\n')
+    sendGcode('S00 D0 F100;\n')
+
 def process_cell(cell):
     print("PLANT EXISTS:", square_has_plant())
+
 
 def patrol(grid):
     go_home()
