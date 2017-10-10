@@ -3,7 +3,7 @@ import sqlite3
 conn = sqlite3.connect('saladbot.db')
 c = conn.cursor()
 
-CELL_SIZE = 10
+CELL_SIZE = 30
 MAX_X = 330
 MAX_Y = 870
 
@@ -18,6 +18,7 @@ class Cell():
 
         def _update():
             c.execute("UPDATE cells SET occupied = (?), planted = (?), watered = (?) WHERE id = (?)", (self.occupied, self.planted, self.watered, self.id))
+            conn.commit()
 
         def set_planted(planted):
             self.planted = planted
@@ -71,7 +72,7 @@ class Grid():
 
     def next_cell(self):
         current_cell = self.current_cell
-        is_advancing_row = ( current_cell.y / 10 ) % 2 == 0
+        is_advancing_row = ( current_cell.y / CELL_SIZE ) % 2 == 0
 
         if is_advancing_row:
             if current_cell.x == MAX_X:
