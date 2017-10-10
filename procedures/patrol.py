@@ -21,13 +21,13 @@ def drop_seed():
     sendGcode('S00 D0 F100;\n')
 
 def process_cell(cell):
-    plant_exists = square_has_plant()
+    # plant_exists = cell.occupied or square_has_plant()
     now = datetime.now()
-    has_been_planted = (now - cell.planted) >= retry_seeding_interval
-    has_been_watered = (now - cell.watered) >= watering_frequency
-    print(has_been_planted, has_been_watered, now)
-    if not plant_exists and not has_been_planted:
-        drop_seed()
+    # has_been_planted = (now - cell.planted) >= retry_seeding_interval
+    has_been_watered = not cell.watered or (now - cell.watered) >= watering_frequency
+    print(has_been_watered, now)
+    # if not plant_exists and not has_been_planted:
+    #     drop_seed()
     if not has_been_watered:
         water(5)
 
