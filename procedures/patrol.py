@@ -24,11 +24,11 @@ def process_cell(cell):
     # plant_exists = cell.occupied or square_has_plant()
     now = datetime.now()
     # has_been_planted = (now - cell.planted) >= retry_seeding_interval
-    has_been_watered = not cell.watered or (now - cell.watered) >= watering_frequency
-    print(has_been_watered, now)
+    needs_watering = not cell.watered or (now - cell.watered) >= watering_frequency
+    print(needs_watering, now)
     # if not plant_exists and not has_been_planted:
     #     drop_seed()
-    if not has_been_watered:
+    if needs_watering:
         water(5)
 
 
