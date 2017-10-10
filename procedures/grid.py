@@ -55,7 +55,7 @@ class Grid():
 
             c.executemany("INSERT INTO cells (id, x, y, occupied, planted, watered) VALUES (?,?,?,?,?,?)", cells)
             conn.commit()
-
+        print(self.grid)
         self.current_cell = self.grid[0]
 
     def get_grid(self):
