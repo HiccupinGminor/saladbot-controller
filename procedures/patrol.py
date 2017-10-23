@@ -25,9 +25,10 @@ def process_cell(cell):
     now = datetime.now()
     # has_been_planted = (now - cell.planted) >= retry_seeding_interval
     needs_watering = not cell.watered or (now - cell.watered) >= watering_frequency
-    print(needs_watering, now)
+
     # if not plant_exists and not has_been_planted:
-    #     drop_seed()
+    drop_seed()
+
     if needs_watering:
         water(5)
 
