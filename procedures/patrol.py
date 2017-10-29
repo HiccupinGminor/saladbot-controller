@@ -29,9 +29,11 @@ def process_cell(cell):
     # if not plant_exists and not has_been_planted:
     # if needs_a_seed:
     drop_seed()
+    cell.set_planted()
 
     # if needs_watering:
     water(5)
+    cell.set_watered()
 
 
 def patrol(grid):
