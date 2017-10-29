@@ -3,7 +3,7 @@ from datetime import datetime
 from camera.camera import square_has_plant
 
 retry_seeding_interval = 7 #days
-watering_frequency = 2 #2x per day
+watering_interval = 2 #2x per day
 
 
 def go_home():
@@ -21,16 +21,17 @@ def drop_seed():
     sendGcode('S00 D0 F100;\n')
 
 def process_cell(cell):
-    # plant_exists = cell.occupied or square_has_plant()
-    now = datetime.now()
-    # has_been_planted = (now - cell.planted) >= retry_seeding_interval
-    needs_watering = not cell.watered or (now - cell.watered) >= watering_frequency
-
+    # plant_growing_in_cell = cell.occupied or square_has_plant()
+    # now = datetime.now().seconds
+    # has_been_planted = (now - cell.planted.seconds) >= retry_seeding_interval
+    # needs_watering = not cell.watered or (now - cell.watered.seconds) >= watering_interval
+    # needs_a_seed = not plant_growing_in_cell and not has_been_planted
     # if not plant_exists and not has_been_planted:
+    # if needs_a_seed:
     drop_seed()
 
-    if needs_watering:
-        water(5)
+    # if needs_watering:
+    water(5)
 
 
 def patrol(grid):
