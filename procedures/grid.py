@@ -15,23 +15,23 @@ class Cell():
         self.occupied = occupied
         self.planted = planted
         self.watered = watered
+        
+    def _update(self):
+        print("UPDATE CALLED")
+        c.execute("UPDATE cells SET occupied = (?), planted = (?), watered = (?) WHERE id = (?)", (self.occupied, self.planted, self.watered, self.id))
+        conn.commit()
 
-        def _update(self):
-            print("UPDATE CALLED")
-            c.execute("UPDATE cells SET occupied = (?), planted = (?), watered = (?) WHERE id = (?)", (self.occupied, self.planted, self.watered, self.id))
-            conn.commit()
+    def set_planted(self, planted):
+        self.planted = planted
+        self._update()
 
-        def set_planted(self, planted):
-            self.planted = planted
-            self._update()
+    def set_watered(self, watered):
+        self.watered = watered
+        self._update()
 
-        def set_watered(self, watered):
-            self.watered = watered
-            self._update()
-
-        def set_occupied(self, occupied):
-            self.occupied = occupied
-            self._update()
+    def set_occupied(self, occupied):
+        self.occupied = occupied
+        self._update()
 
 
 class Grid():
