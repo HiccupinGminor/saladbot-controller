@@ -15,7 +15,7 @@ class Cell():
         self.occupied = occupied
         self.planted = planted
         self.watered = watered
-        
+
     def _update(self):
         print("UPDATE CALLED")
         c.execute("UPDATE cells SET occupied = (?), planted = (?), watered = (?) WHERE id = (?)", (self.occupied, self.planted, self.watered, self.id))

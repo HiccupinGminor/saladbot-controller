@@ -28,12 +28,14 @@ def process_cell(cell):
     # needs_a_seed = not plant_growing_in_cell and not has_been_planted
     # if not plant_exists and not has_been_planted:
     # if needs_a_seed:
+    now = datetime.now()
+
     drop_seed()
-    cell.set_planted()
+    cell.set_planted(now)
 
     # if needs_watering:
     water(5)
-    cell.set_watered()
+    cell.set_watered(now)
 
 
 def patrol(grid):
