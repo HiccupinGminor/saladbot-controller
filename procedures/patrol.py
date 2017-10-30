@@ -23,6 +23,7 @@ def drop_seed():
 def process_cell(cell):
     now = datetime.now()
     seconds = now.second
+    
     if cell.planted:
         needs_seed = (seconds - cell.planted.second) >= retry_seeding_interval
     else:

@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect('saladbot.db')
+conn = sqlite3.connect('saladbot.db', detect_types=sqlite3.PARSE_DECLTYPES)
 c = conn.cursor()
 
 CELL_SIZE = 30
