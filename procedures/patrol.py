@@ -22,8 +22,8 @@ def drop_seed():
 
 def process_cell(cell):
     now = datetime.now()
-    seconds = now.seconds
-    needs_seed = (seconds - cell.planted.seconds) >= retry_seeding_interval
+    seconds = now.second
+    needs_seed = (seconds - cell.planted.second) >= retry_seeding_interval
     # needs_watering = not cell.watered or (now - cell.watered.seconds) >= watering_interval
     # needs_a_seed = not plant_growing_in_cell and not has_been_planted
     # if not plant_exists and not has_been_planted:
