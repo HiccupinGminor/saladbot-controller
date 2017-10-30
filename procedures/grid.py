@@ -42,7 +42,7 @@ class Grid():
             self.grid = list(map(lambda row: Cell(id=row[0],x=row[1],y=row[2],occupied=row[3],planted=row[4],watered=row[5]), cells))
 
         except sqlite3.OperationalError:
-            c.execute("CREATE TABLE cells (id integer primary key, x integer, y integer, occupied boolean, planted datetime, watered datetime)")
+            c.execute("CREATE TABLE cells (id integer primary key, x integer, y integer, occupied boolean, planted timestamp, watered timestamp)")
 
             cells = []
             # Based on boundaries, populate table with cells
