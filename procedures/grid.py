@@ -52,7 +52,7 @@ class Grid():
                     id = id + 1
                     cell = (id, j, i, False, None, None)
                     cells.append(cell)
-                    self.grid.append(Cell(id=id, x=cell[0], y=cell[1], occupied=cell[2], planted=cell[3], watered=cell[4]))
+                    self.grid.append(Cell(id=id, x=cell[1], y=cell[2], occupied=cell[3], planted=cell[4], watered=cell[5]))
 
             c.executemany("INSERT INTO cells (id, x, y, occupied, planted, watered) VALUES (?,?,?,?,?,?)", cells)
             conn.commit()
