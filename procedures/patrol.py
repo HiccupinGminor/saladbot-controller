@@ -43,8 +43,8 @@ def process_cell(cell):
         cell.set_planted(now)
 
     # if needs_watering:
-    water(3)
-    cell.set_watered(now)
+    # water(3)
+    # cell.set_watered(now)
 
 
 def patrol(grid):
