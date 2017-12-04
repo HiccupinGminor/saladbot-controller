@@ -40,7 +40,7 @@ def process_cell(cell):
     try:
         cell.occupied = square_has_plant();
     except PiCameraError:
-        print ("Camera error": PiCameraError)
+        print ("Camera error", PiCameraError)
 
     if needs_seed and not cell.occupied:
         drop_seed()
