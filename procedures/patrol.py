@@ -1,5 +1,6 @@
 from gcode import sendGcode
 from datetime import datetime
+from picamera import PiCameraError
 from camera.camera import square_has_plant
 
 retry_seeding_interval = 1209600 # 14 days
@@ -36,7 +37,10 @@ def process_cell(cell):
     # needs_a_seed = not plant_growing_in_cell and not has_been_planted
     # if not plant_exists and not has_been_planted:
     # if needs_a_seed:
-    cell.occupied = square_has_plant();
+    try:
+        cell.occupied = square_has_plant();
+    except PiCameraError:
+        print ("Camera error": PiCameraError)
 
     if needs_seed and not cell.occupied:
         drop_seed()
