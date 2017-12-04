@@ -60,4 +60,5 @@ def patrol(grid):
         print(current_cell)
         go_to(current_cell)
         process_cell(current_cell)
+    go_home()                
     turn_off_motors()
