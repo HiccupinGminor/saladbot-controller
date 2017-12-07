@@ -8,7 +8,7 @@ watering_interval = 2 #2x per day
 
 
 def go_home():
-    sendGcode('G00 X0 Y0;\n')
+    sendGcode('H0;\n')
 
 def turn_off_motors():
     sendGcode('M18;\n')
@@ -60,5 +60,5 @@ def patrol(grid):
         print(current_cell)
         go_to(current_cell)
         process_cell(current_cell)
-    go_home()                
+    go_home()
     turn_off_motors()
